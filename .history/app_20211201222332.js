@@ -23,7 +23,7 @@ function addTask(e) {
 
   li.className = 'collection-item';
 
-  li.appendChild(document.createTextNode(taskInput.value));
+  li.appendChild(document.createTextNode(textInput.value));
 
   const link = document.createElement('a');
 
@@ -31,13 +31,7 @@ function addTask(e) {
 
   link.innerHTML = '<i class="fa fa-remove"></i>'
 
-  li.appendChild(link);
-
-  taskList.appendChild(li);
-
-  taskInput.value = '';
-
-  console.log(li)
+  li.appendChild(link)
 
   e.preventDefault();
 }
