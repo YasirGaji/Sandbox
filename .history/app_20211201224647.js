@@ -39,13 +39,10 @@ function addTask(e) {
 
   taskInput.value = ''; // assigning value to taskInout 
 
-  console.log(li)
 
   e.preventDefault();
 }
 
 function removeTask(e) {
-  // if(e.target) {
-    console.log(e.target)
-  //}
+
 }

@@ -45,7 +45,7 @@ function addTask(e) {
 }
 
 function removeTask(e) {
-  // if(e.target) {
+  if(e.target) {
     console.log(e.target)
-  //}
+  }
 }
