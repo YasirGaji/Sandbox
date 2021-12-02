@@ -107,38 +107,13 @@ function removeTask(e) {
   }
 } // this function would take out the task
 
-function removeTaskFromLocalStorage(taskItem) {
-  let tasks;
-
-  if(localStorage.getItem('tasks') === null){
-    tasks = []
-  } else {
-    tasks = JSON.parse(localStorage.getItem('tasks'));
-  }
-
-  tasks.forEach(function(task, index){
-    if(taskItem.textContent === task){
-      tasks.splice(index, 1);
-    }
-  })
-
-  localStorage.setItem('tasks', JSON.stringify(tasks));
-} // this would remove task from the local storage
-
 function clearTasks() {
   // taskList.innerHTML = '';
 
   while(taskList.firstChild) {
     taskList.removeChild(taskList.firstChild);
   }
-
-  clearTasksFromLocalStorage();
-
 } // clear task function 
-
-function clearTasksFromLocalStorage() {
-  localStorage.clear()
-}
 
 function filterTasks(e) {
   const text = e.target.value.toLowerCase();

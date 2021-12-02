@@ -132,13 +132,9 @@ function clearTasks() {
     taskList.removeChild(taskList.firstChild);
   }
 
-  clearTasksFromLocalStorage();
+  
 
 } // clear task function 
-
-function clearTasksFromLocalStorage() {
-  localStorage.clear()
-}
 
 function filterTasks(e) {
   const text = e.target.value.toLowerCase();

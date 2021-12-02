@@ -123,7 +123,7 @@ function removeTaskFromLocalStorage(taskItem) {
   })
 
   localStorage.setItem('tasks', JSON.stringify(tasks));
-} // this would remove task from the local storage
+}
 
 function clearTasks() {
   // taskList.innerHTML = '';
@@ -131,14 +131,7 @@ function clearTasks() {
   while(taskList.firstChild) {
     taskList.removeChild(taskList.firstChild);
   }
-
-  clearTasksFromLocalStorage();
-
 } // clear task function 
-
-function clearTasksFromLocalStorage() {
-  localStorage.clear()
-}
 
 function filterTasks(e) {
   const text = e.target.value.toLowerCase();
