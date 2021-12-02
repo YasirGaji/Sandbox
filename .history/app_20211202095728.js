@@ -14,10 +14,6 @@ function loadEventListeners() {
   form.addEventListener('submit', addTask); // would pick task event
 
   taskList.addEventListener('click', removeTask); // would remove task upon click
-
-  clearBtn.addEventListener('click', clearTasks); // would clear task collections 
-
-  filter.addEventListener('keyup', filterTasks);
 }
 
 function addTask(e) {
@@ -54,25 +50,4 @@ function removeTask(e) {
       e.target.parentElement.parentElement.remove();
     }
   }
-} // this function would take out the task
-
-function clearTasks() {
-  // taskList.innerHTML = '';
-
-  while(taskList.firstChild) {
-    taskList.removeChild(taskList.firstChild);
-  }
-} // clear task function 
-
-function filterTasks(e) {
-  const text = e.target.value.toLowerCase();
-
-  document.querySelectorAll('.collection-item').forEach(function(task){
-    const item = task.firstChild.textContent;
-    if(item.toLowerCase().indexOf(text) != -1){
-      task.style.display = 'block';
-    } else {
-      task.style.display = 'none';
-    }
-  });
-} // this block would filter the tasks 
+}

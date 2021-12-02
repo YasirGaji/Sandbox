@@ -75,4 +75,4 @@ function filterTasks(e) {
       task.style.display = 'none';
     }
   });
-} // this block would filter the tasks 
+}

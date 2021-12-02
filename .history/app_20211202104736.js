@@ -69,10 +69,10 @@ function filterTasks(e) {
 
   document.querySelectorAll('.collection-item').forEach(function(task){
     const item = task.firstChild.textContent;
-    if(item.toLowerCase().indexOf(text) != -1){
-      task.style.display = 'block';
+    if(item.toLowerCase){
+
     } else {
-      task.style.display = 'none';
+      
     }
   });
-} // this block would filter the tasks 
+}
