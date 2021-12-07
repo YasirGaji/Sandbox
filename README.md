@@ -7,7 +7,8 @@ This was built to understand the basic concepts of the DOM, and to learn how to 
 ---
 # Stack
 **Html 5 |**
-**MaterializeCss |**
+**Css |**
+**BootstrapCss |**
 **Javascript**
 
 ---
