@@ -18,17 +18,17 @@
             <h1 class="heading display-5 pb-3">
               Loan Calculator
             </h1>
-            <form id="loan-form">
+            <form id="loan_form">
               <div class="form-group">
                 <div class="input-group">
-                  <span class="input-group-addon">₦</span>
+                  <span class="input-group">₦aira</span>
                   <input type="number" class="form-control" id="amount" placeholder="Loan Amount">
                 </div>
               </div>
               <br>
               <div class="form-group">
                 <div class="input-group">
-                  <span class="input-group-addon">%</span>
+                  <span class="input-group">% Percentage</span>
                   <input type="number" class="form-control" id="interest" placeholder="Interest">
                 </div>
               </div>
@@ -50,19 +50,22 @@
               <h5>RESULTS</h5>
               <div class="form-group">
                 <div class="input-group">
-                  <input type="number" class="form-control" id="monthly_payment" placeholder="Monthly Payment" disabled>
+                  <span class="input-group">Monthly Payment</span>
+                  <input type="number" class="form-control" id="monthly_payment" placeholder="" disabled>
                 </div>
               </div>
               <br>
               <div class="form-group">
                 <div class="input-group">
-                  <input type="number" class="form-control" id="total_payment" placeholder="Total Payment" disabled>
+                  <span class="input-group">Total Interest</span>
+                  <input type="number" class="form-control" id="total_payment" placeholder="" disabled>
                 </div>
               </div>
               <br>
               <div class="form-group">
                 <div class="input-group">
-                  <input type="number" class="form-control" id="total_interest" placeholder="Total Interest" disabled>
+                  <span class="input-group">Total Interest</span>
+                  <input type="number" class="form-control" id="total_interest" placeholder="" disabled>
                 </div>
               </div>
             </div>
@@ -72,10 +75,12 @@
     </div>
 
 
-    <script src="/app.js"></script>
+    
     <!--  Separate Popper and Bootstrap JS -->
     
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+
+    <script src="/app.js"></script>
   </body>
 </html>
