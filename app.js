@@ -1,6 +1,13 @@
-document.getElementById('loan_form').addEventListener('submit', calculateResults); // this listens for the submit event 
+document.getElementById('loan_form').addEventListener('submit', function(e){
 
-function calculateResults(e){
+  document.getElementById('loading').style.display = 'block';
+  
+  setTimeout(calculateResults, 2000);
+
+  e.preventDefault();
+}); // this listens for the submit event 
+
+function calculateResults(){
     // INITIALIZING UI VARIABLES
   const amount = document.getElementById('amount');
   const interest = document.getElementById('interest');
@@ -22,14 +29,21 @@ function calculateResults(e){
     monthlyPayment.value = monthly.toFixed(2);
     totalPayment.value = (monthly * calculatedPayments).toFixed(2);
     totalInterest.value = ((monthly * calculatedPayments)-principal).toFixed(2);
+
+    document.getElementById('results').style.display = 'block'; // this shows the results
+
+    document.getElementById('loading').style.display = 'none'; // this would not display the loading gif
+
   } else {
     showError('Please check your numbers.')
   }
 
-  e.preventDefault();
 }; // this calculates the results
 
 function showError(error) {
+  document.getElementById('results').style.display = 'none'; // this would not show the results
+
+  document.getElementById('loading').style.display = 'none'; // this would not display the loading gif
   const errorDiv = document.createElement('div'); // this creates a div
 
     // GETTING CARD & HEADING ELEMENT
@@ -41,6 +55,7 @@ function showError(error) {
   errorDiv.appendChild(document.createTextNode(error)); // this adds a textnode as a child element
 
   card.insertBefore(errorDiv, heading); // this puts the error div before the heading element
+  
 
   setTimeout(clearError, 3000);
 }; // this shows error message if input fields are not filled
