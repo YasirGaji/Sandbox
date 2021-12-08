@@ -17,6 +17,12 @@ minNum.textContent = min;
 maxNum.textContent = max;
 
   // LISTENING FOR EVENTS 
+game.addEventListener('mousedown', function(e) {
+  if(e.target.className === 'play_again') {
+    window.location.reload();
+  }
+});
+
 guessBtn.addEventListener('click', function(){
   let guess = parseInt(guessInput.value);
 
@@ -49,8 +55,11 @@ function gameOver(win, msg) {
 
   message.style.color = color; // this changes the text color to green, indicating a win
 
-  setMessage(msg);
-}
+  setMessage(msg); // assigning the msg parameter as an arguement to setMessage()
+
+  guessBtn.value = 'Play Again';
+  guessBtn.className += 'play_again';
+} // the game over function
 
 function setMessage(msg, color) {
   message.textContent = msg;
