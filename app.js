@@ -1,7 +1,7 @@
   // INITIALIZING VARIABLES
-let min = 0,
+let min = 1,
     max = 10,
-    winningNum = 2,
+    winningNum = getRandomNum(min, max),
     guessesLeft = 3;
 
   // INITIALIZING INTERFACE ELEMENTS
@@ -21,7 +21,7 @@ game.addEventListener('mousedown', function(e) {
   if(e.target.className === 'play_again') {
     window.location.reload();
   }
-});
+}); // this event makes the play again button function right 
 
 guessBtn.addEventListener('click', function(){
   let guess = parseInt(guessInput.value);
@@ -60,6 +60,10 @@ function gameOver(win, msg) {
   guessBtn.value = 'Play Again';
   guessBtn.className += 'play_again';
 } // the game over function
+
+function getRandomNum(min, max) {
+  return Math.floor(Math.random()*(max- min + 1) + min);
+} // this automates a random pick 
 
 function setMessage(msg, color) {
   message.textContent = msg;
