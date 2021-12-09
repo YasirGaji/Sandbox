@@ -7,7 +7,7 @@ function Book(title, author, isbn) {
 
 function UI() {} // this is the Ui constructor having no arguements and parameters
 
-
+  // UI PROTOTYPE FIELDS 
 UI.prototype.addBookToList = function(book) {
   const list = document.getElementById('book_list'); // assigning list
 
@@ -46,6 +46,12 @@ UI.prototype.clearFields = function() {
   document.getElementById('isbn').value = '';
 }; // this function clears the form input fields
 
+UI.prototype.deleteBook = function(target) {
+  if(target.className === 'delete') {
+    target.parentElement.parentElement.remove();
+  }
+}; // this function takes out tr element which is the parent element of the target by 2 steps
+
   // DECLARING EVENT LISTENERS
 document.getElementById('book_form').addEventListener('submit', function(e){
     // ASSIGNING VARIABLES
@@ -68,4 +74,15 @@ document.getElementById('book_form').addEventListener('submit', function(e){
   }
   
   e.preventDefault();
-});
+}); // this executes when the submit button is clicked
+
+document.getElementById('book_list').addEventListener('click', function(e) {
+  const ui = new UI();
+
+  ui.deleteBook(e.target);
+
+  ui.showAlert('Book Removed Successfully!', 'success');
+
+  e.preventDefault();
+}); // this event executes when the remove button is clicked
+
