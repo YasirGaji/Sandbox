@@ -1,13 +1,12 @@
-  // INITIALIZING CONSTRUCTORS IN ES6
+  // INITIALIZING CONSTRUCTORS IN ES6 CLASSESA
 class Book {
   constructor(title, author, isbn) {
     this.title = title;
     this.author = author;
     this.isbn = isbn;
   }
-};
+}; // variables
 
-  // UI PROTOTYPE FIELDS IN ES6
 class UI {
   addBookToList(book) {
     const list = document.getElementById('book_list'); // assigning list
@@ -51,7 +50,52 @@ class UI {
     document.getElementById('author').value = '';
     document.getElementById('isbn').value = '';
   };
-};
+}; // prototype fields 
+
+class Store {
+  static getBooks() {
+    let books;
+    if(localStorage.getItem('books') === null) {
+      books = [];
+    } else {
+      books = JSON.parse(localStorage.getItem('books'));
+    }
+
+    return books;
+  }; // this picks up book details from the ui
+
+  static addBook(book) {
+    const books = Store.getBooks();
+
+    books.push(book);
+    localStorage.setItem('books', JSON.stringify(books));
+  }; // this adds the book to the localStorage
+
+  static displayBooks() {
+    const books = Store.getBooks();
+
+    books.forEach(function(book) {
+      const ui = new UI;
+
+      ui.addBookToList(book);
+    });
+  }; // this displays the book from the localstorage on the UI
+
+  static removeBook(isbn) {
+    const books = Store.getBooks();
+
+    books.forEach(function(book, index) {
+      if(book.isbn === isbn) {
+        books.splice(index, 1);
+      }
+    });
+
+    localStorage.setItem('books', JSON.stringify(books));
+  }; // this removrs from the local storage
+}; // this is to access the local storage
+
+  // LOADING DOM EVENTS
+document.addEventListener('DOMContentLoaded', Store.displayBooks);
 
   // DECLARING EVENT LISTENERS
 document.getElementById('book_form').addEventListener('submit', function(e){
@@ -70,6 +114,8 @@ if(title === '' || author === '' || isbn === '') {
   ui.showAlert('Book added successfully!', 'success');
 
   ui.addBookToList(book);
+
+  Store.addBook(book);
   
   ui.clearFields();
 }
@@ -81,6 +127,8 @@ document.getElementById('book_list').addEventListener('click', function(e) {
   const ui = new UI();
 
   ui.deleteBook(e.target);
+
+  Store.removeBook(e.target.parentElement.previousElementSibling.textContent);
 
   ui.showAlert('Book Removed Successfully!', 'success');
 
