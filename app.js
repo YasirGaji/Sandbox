@@ -7,6 +7,7 @@ function getText() {
     })
     .then(function(data) {
       console.log(data);
+      document.getElementById('output').innerHTML = data;
     })
     .catch(function(err) {
       console.log(err);
