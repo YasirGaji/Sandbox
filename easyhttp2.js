@@ -52,4 +52,19 @@ class easyHttp {
         .catch(err => reject(err));
     });
   }
+  
+    // DELETE REQUEST
+  delete(url) {
+    return new Promise((resolve, reject) => {
+      fetch(url, {
+        method: 'DELETE',
+        headers: {
+          'content-type': 'application/json'
+        }
+      })
+        .then(res => res.json())
+        .then(() => resolve('Resource deleted'))
+        .catch(err => reject(err));
+    });
+  }
 }
