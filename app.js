@@ -1,8 +1,9 @@
   // SEARCH INPUT
 const searchUser = document.getElementById('searchUser');
 
-  // INSTANTIATING GITHUB API
+  // INSTANTIATIONS
 const github = new Github();
+      ui = new UI();  
 
 searchUser.addEventListener('keyup', function(e) {
   const userText = e.target.value;
@@ -15,11 +16,11 @@ searchUser.addEventListener('keyup', function(e) {
           showError('User not found');
         } else {
           // SHOW THE PROFILE
-          showProfile(data.profile);
+          ui.showProfile(data.profile);
         }
       })
   } else {
     // CLEAR THE PROFILE
-    clearProfile();
+    //clearProfile();
   }
 });
