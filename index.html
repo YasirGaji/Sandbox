@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/fontawesome.min.css" integrity="sha384-jLKHWM3JRmfMU0A5x5AkjWkw/EYfGUAGagvnfryNV3F9VqM98XiIH7VBGVoxVSc7" crossorigin="anonymous">
+
+  <title>TRAKALORIE</title>
+</head>
+<body>
+  <nav>
+    <div class="nav-wrapper grey">
+      <div class="container">
+        <a href="#" class="brand-logo center">Trakalorie</a>
+        <ul class="right">
+          <li><a href="#" class="clear-btn btn black lighten-17">Clear All</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <br>
+
+  <div class="container">
+    <div class="card">
+      <div class="card-content">
+        <span class="card-title">Add Meal / Food Item</span>
+
+        <form class="col">
+          <div class="row">
+            <div class="input-field col s6">
+              <input type="text" placeholder="Add item" id="item-name">
+              <label for="item-name">Meal</label>
+            </div>
+
+            <div class="input-field col s6">
+              <input type="text" placeholder="Add Calories" id="item-calories">
+              <label for="item-calories">Calories</label>
+            </div>
+
+            <button class="add-btn btn blue darken-2">
+              <i class="fa fa-plus"></i>
+              Add Meal
+            </button>
+<!-- 
+            <button class="update-btn btn orange darken-7">
+              <i class="fa fa-pencil-square-0"></i>
+              Update Meal
+            </button>
+
+            <button class="delete-btn btn red darken-2">
+              <i class="fa fa-remove"></i>
+              Delete Meal
+            </button> -->
+
+            <button class="back-btn btn grey pull-right">
+              <i class="fa fa-chevron-circle-left"></i>
+              Back
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+
+    <h4 class="center-align">Total Calories: <span class="total-calories">0</span></h4>
+
+    <ul id="item-list" class="collection">
+      <!-- <li class="collection-item" id="calories-0">
+        <div>
+          <strong>Meal: </strong>
+          <span class="name">Noodles</span>
+          <strong>Calories: </strong>
+          <span class="calories">0</span>
+          <a href="#" class="secondary-content">
+            <i class="fa fa-pencil"></i>
+          </a>
+        </div>
+      </li>
+
+      <li class="collection-item" id="calories-0">
+        <div>
+          <strong>Meal: </strong>
+          <span class="name">Amala</span>
+          <strong>Calories: </strong>
+          <span class="calories">0</span>
+          <a href="#" class="secondary-content">
+            <i class="fa fa-pencil"></i>
+          </a>
+        </div>
+      </li>
+
+      <li class="collection-item" id="calories-0">
+        <div>
+          <strong>Meal: </strong>
+          <span class="name">Toast</span>
+          <strong>Calories: </strong>
+          <span class="calories">0</span>
+          <a href="#" class="secondary-content">
+            <i class="fa fa-pencil"></i>
+          </a>
+        </div>
+      </li> -->
+    </ul>
+  </div>
+  
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+  <!-- Compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+  <script src="/app.js"></script>
+</body>
+</html>
