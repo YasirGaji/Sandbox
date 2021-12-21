@@ -34,6 +34,27 @@ const itemCtrl = (function(){
       return data.items;
     },
 
+    addItem: function(name, calories) {
+      let ID;
+        // CREATE ID
+      if(data.items.length > 0) {
+        ID = data.items[data.items.length - 1].id + 1;
+      } else {
+        ID = 0;
+      }
+
+        // CREATE CALORIES TO NUMBER
+      calories = parseInt(calories);
+
+        // CREATE NEW ITEM
+      newItem = new Item(ID, name, calories);
+
+        // ADD TO ITEMS ARRAY
+      data.items.push(newItem);
+
+      return newItem;
+    },
+
     logData: function() {
       return data;
     }
@@ -45,6 +66,11 @@ const itemCtrl = (function(){
 const UICtrl = (function(){
   const UISelectors = {
     itemList: '#item-list',
+    addBtn: '.add-btn',
+    updateBtn: '.update-btn',
+    deleteBtn: '.delete-btn',
+    itemNameInput: '#item-name',
+    itemCaloriesInput: '#item-calories',
   }
 
     // PUBLIC METHODS
@@ -70,6 +96,16 @@ const UICtrl = (function(){
 
         // INSERT LIST ITEMS
       document.querySelector(UISelectors.itemList).innerHTML = html;
+    },
+
+    getItemInput: function() {
+      return {
+        name: document.querySelector(UISelectors.itemNameInput).value,
+        calories: document.querySelector(UISelectors.itemCaloriesInput).value
+      }
+    },
+    getSelectors: function() {
+      return UISelectors;
     }
   }
 })(); // The UI Controller
@@ -77,6 +113,43 @@ const UICtrl = (function(){
 
 
 const App = (function(itemCtrl, UICtrl){
+    // LOAD EVENT LISTENERS
+  const loadEventListeners = function() {
+      // GET UI SELECTORS
+    const UISelectors = UICtrl.getSelectors();
+
+      // ADD ITEM EVENT
+    document.querySelector(UISelectors.addBtn).addEventListener('click', itemAddSubmit);
+
+    //   // EDIT ITEM EVENT
+    // document.querySelector(UISelectors.updateBtn).addEventListener('click', itemEditClick);
+
+    //   // DELETE ITEM EVENT
+    // document.querySelector(UISelectors.deleteBtn).addEventListener('click', itemDeleteSubmit);
+
+     
+  }
+
+    // ADD ITEM SUBMIT
+  const itemAddSubmit = function(e) {
+      // GET FORM INPUT FROM UI CONTROLLER
+    const input = UICtrl.getItemInput();
+
+      // CHECK FOR INPUT VALUES
+    if(input.name !== '' && input.calories !== '') {
+        // ADD ITEM
+      const newItem = itemCtrl.addItem(input.name, input.calories);
+
+        // ADD ITEM TO UI
+      UICtrl.populateItemList(itemCtrl.getItems());
+
+        // CLEAR INPUTS
+      UICtrl.clearInput();
+    }
+
+    e.preventDefault();
+  }
+
 
     // THE PUBLIC METHODS
   return {
@@ -86,6 +159,8 @@ const App = (function(itemCtrl, UICtrl){
       const Items = itemCtrl.getItems();
 
       UICtrl.populateItemList(Items);
+
+      loadEventListeners();
     }
   }
 
