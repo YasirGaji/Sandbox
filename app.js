@@ -1,10 +1,13 @@
-const itemCtrl = (function(){
+
+  // ITEM CONTROLLER
+const ItemCtrl = (function(){
   const Item = function(id, name, calories) {
     this.id = id;
     this.name = name;
     this.calories = calories;
   }
 
+    // DATA STORAGE/STATE
   const data = {
     items: [
       {
@@ -64,6 +67,7 @@ const itemCtrl = (function(){
 
 
 
+  // UI CONTROLLER 
 const UICtrl = (function(){
   const UISelectors = {
     itemList: '#item-list',
@@ -136,7 +140,8 @@ const UICtrl = (function(){
 
 
 
-const App = (function(itemCtrl, UICtrl){
+  // APP CONTROLLER
+const App = (function(ItemCtrl, UICtrl){
     // LOAD EVENT LISTENERS
   const loadEventListeners = function() {
       // GET UI SELECTORS
@@ -162,7 +167,7 @@ const App = (function(itemCtrl, UICtrl){
       // CHECK FOR INPUT VALUES
     if(input.name !== '' && input.calories !== '') {
         // ADD ITEM
-      const newItem = itemCtrl.addItem(input.name, input.calories);
+      const newItem = ItemCtrl.addItem(input.name, input.calories);
 
         // ADD ITEM TO UI
       UICtrl.addListItem(newItem);
@@ -174,13 +179,12 @@ const App = (function(itemCtrl, UICtrl){
     e.preventDefault();
   }
 
-
     // THE PUBLIC METHODS
   return {
     init: function() {
       console.log('Application has started');
 
-      const Items = itemCtrl.getItems();
+      const Items = ItemCtrl.getItems();
 
       UICtrl.populateItemList(Items);
 
@@ -188,6 +192,6 @@ const App = (function(itemCtrl, UICtrl){
     }
   }
 
-})(itemCtrl, UICtrl); // The App Controller
+})(ItemCtrl, UICtrl); // The App Controller
 
 App.init();
