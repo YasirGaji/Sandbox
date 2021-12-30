@@ -29,6 +29,7 @@ const itemCtrl = (function(){
     totalCalories: 0
   }
 
+    // PUBLCI METHODS
   return {
     getItems: function() {
       return data.items;
@@ -43,7 +44,7 @@ const itemCtrl = (function(){
         ID = 0;
       }
 
-        // CREATE CALORIES TO NUMBER
+        // PARSE CALORIES TO NUMBER
       calories = parseInt(calories);
 
         // CREATE NEW ITEM
@@ -104,6 +105,29 @@ const UICtrl = (function(){
         calories: document.querySelector(UISelectors.itemCaloriesInput).value
       }
     },
+
+    addListItem: function(item) {
+      const li = document.createElement('li');
+
+      li.className = 'collection-item';
+
+      li.id = `item-${item.id}`;
+
+      li.innerHTML = `
+        <div>
+          <strong>Meal: </strong>
+          <span class="name">${item.name}</span>
+          <strong>Calories: </strong>
+          <span class="calories">${item.calories}</span>
+          <a href="#" class="secondary-content">
+            <i class="edit-item fa fa-pencil"></i>
+          </a>
+        </div>
+      `;
+
+      document.querySelector(UISelectors.itemList).insertAdjacentElement('beforeend', li);
+    },
+
     getSelectors: function() {
       return UISelectors;
     }
@@ -141,10 +165,10 @@ const App = (function(itemCtrl, UICtrl){
       const newItem = itemCtrl.addItem(input.name, input.calories);
 
         // ADD ITEM TO UI
-      UICtrl.populateItemList(itemCtrl.getItems());
+      UICtrl.addListItem(newItem);
 
         // CLEAR INPUTS
-      UICtrl.clearInput();
+      //UICtrl.clearInput();
     }
 
     e.preventDefault();
