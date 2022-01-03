@@ -59,6 +59,22 @@ const ItemCtrl = (function(){
       return newItem;
     },
 
+    updateItem: function(name, calories) {
+    calories = parseInt(calories);
+
+    let found = null;
+
+    data.items.forEach(function(item) {
+      if(item.id === data.currentItem.id) {
+        item.name = name;
+        item.calories = calories;
+        found = item;
+      }
+    });
+
+    return found;
+  },
+
     getItemById: function(id) {
       let found = null;
 
@@ -68,7 +84,15 @@ const ItemCtrl = (function(){
         }
       });
 
-      
+      return found;
+    },
+
+    setCurrentItem: function(item) {
+      data.currentItem = item;
+    },
+
+    getCurrentItem: function() {
+      return data.currentItem;
     },
 
     getTotalCalories: function() {
@@ -95,6 +119,7 @@ const ItemCtrl = (function(){
 const UICtrl = (function(){
   const UISelectors = {
     itemList: '#item-list',
+    listItems: '#item-list li',
     addBtn: '.add-btn',
     updateBtn: '.update-btn',
     deleteBtn: '.delete-btn',
@@ -160,6 +185,30 @@ const UICtrl = (function(){
       document.querySelector(UISelectors.itemList).insertAdjacentElement('beforeend', li);
     },
 
+    updateListItem: function(item) {
+      let listItems = document.querySelectorAll(UISelectors.listItems);
+
+      listItems = Array.from(listItems);
+
+      listItems.forEach(function(listItem) {
+        const itemID = listItem.getAttribute('id');
+
+        if(itemID === `item-${item.id}`) {
+          document.querySelector(`#${itemID}`).innerHTML = `
+            <div>
+              <strong>Meal: </strong>
+              <span class="name">${item.name}</span>
+              <strong>Calories: </strong>
+              <span class="calories">${item.calories}</span>
+              <a href="#" class="secondary-content">
+              <i class="uil uil-pen edit-item"></i>
+              </a>
+            </div>
+          `;
+        }
+      })
+    },
+
     clearInput: function() {
       document.querySelector(UISelectors.itemNameInput).value = '';
       document.querySelector(UISelectors.itemCaloriesInput).value = '';
@@ -167,6 +216,12 @@ const UICtrl = (function(){
 
     hideList: function() {
       document.querySelector(UISelectors.itemList).style.display = 'none';
+    },
+
+    addItemToForm: function() {
+      document.querySelector(UISelectors.itemNameInput).value = ItemCtrl.getCurrentItem().name;
+      document.querySelector(UISelectors.itemCaloriesInput).value = ItemCtrl.getCurrentItem().calories;
+      UICtrl.showEditState();
     },
 
     showTotalCalories: function(totalCalories) {
@@ -183,6 +238,16 @@ const UICtrl = (function(){
       document.querySelector(UISelectors.backBtn).style.display = 'none';
 
       document.querySelector(UISelectors.addBtn).style.display = 'inline';
+    },
+
+    showEditState: function() {
+      document.querySelector(UISelectors.updateBtn).style.display = 'inline';
+
+      document.querySelector(UISelectors.deleteBtn).style.display = 'inline';
+
+      document.querySelector(UISelectors.backBtn).style.display = 'inline';
+
+      document.querySelector(UISelectors.addBtn).style.display = 'none';
     },
 
     getSelectors: function() {
@@ -204,11 +269,16 @@ const App = (function(ItemCtrl, UICtrl){
     document.querySelector(UISelectors.addBtn).addEventListener('click', itemAddSubmit);
 
       // EDIT ICON EVENT
-    document.querySelector(UISelectors.itemList).addEventListener('click', itemUpdateSubmit);
+    document.querySelector(UISelectors.itemList).addEventListener('click', itemEditClick);
+
+      // UPDATE ITEM EVENT
+    document.querySelector(UISelectors.updateBtn).addEventListener('click', itemUpdateSubmit);
+
+      // DISABLE SUBMIT ON ENTER KEY
+    document.addEventListener('keypress', disableEnterKey);
 
     //   // DELETE ITEM EVENT
     // document.querySelector(UISelectors.deleteBtn).addEventListener('click', itemDeleteSubmit);
-
      
   }
 
@@ -237,20 +307,44 @@ const App = (function(ItemCtrl, UICtrl){
     e.preventDefault();
   }
 
-    // UPDATE ITEM SUBMIT
-  const itemUpdateSubmit = function(e) {
+    // EDIT ITEM 
+  const itemEditClick = function(e) {
     if(e.target.classList.contains('edit-item')) {
-      const listId = e.target.parentNode.parentNode.id;
+      const listId = e.target.parentNode.parentNode.parentNode.id;
 
       const listIdArr = listId.split('-');
 
       const id = parseInt(listIdArr[1]);
 
       const itemToEdit = ItemCtrl.getItemById(id);
+
+      ItemCtrl.setCurrentItem(itemToEdit);
+
+      UICtrl.addItemToForm();
     }
 
     e.preventDefault();
   }
+
+    // UPDATE ITEM
+  const itemUpdateSubmit = function(e) {
+    console.log('update item');
+
+    const input = UICtrl.getItemInput();
+
+    const updatedItem = ItemCtrl.updateItem(input.name, input.calories);
+
+    UICtrl.updateListItem(updatedItem);
+
+    e.preventDefault();
+  }
+    // DISABLE ENTER KEY
+  const disableEnterKey = function(e) {
+    if(e.keyCode === 13 || e.which === 13) {
+      e.preventDefault();
+      return false;
+    }    
+    }
 
     // THE PUBLIC METHODS
   return {
