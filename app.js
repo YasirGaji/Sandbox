@@ -336,6 +336,13 @@ const App = (function(ItemCtrl, UICtrl){
 
     UICtrl.updateListItem(updatedItem);
 
+    // GET TOTAL CALORIES
+    const totalCalories = ItemCtrl.getTotalCalories();
+
+    UICtrl.showTotalCalories(totalCalories);
+
+    UICtrl.clearEditState();
+
     e.preventDefault();
   }
     // DISABLE ENTER KEY
