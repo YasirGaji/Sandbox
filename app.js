@@ -277,6 +277,9 @@ const App = (function(ItemCtrl, UICtrl){
       // DISABLE SUBMIT ON ENTER KEY
     document.addEventListener('keypress', disableEnterKey);
 
+      // BACK BUTTON EVENT
+    document.querySelector(UISelectors.backBtn).addEventListener('click', UICtrl.clearEditState);
+
     //   // DELETE ITEM EVENT
     // document.querySelector(UISelectors.deleteBtn).addEventListener('click', itemDeleteSubmit);
      
