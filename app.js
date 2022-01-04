@@ -1,3 +1,38 @@
+  // STORAGE CONTROLLER 
+const StorageCtrl = (function() {
+  return {
+    storeItem: function(item) {
+      let items;
+
+        // Check if any items in local storage
+      if(localStorage.getItem('items') === null) {
+        items = [];
+
+        items.push(item);
+
+        localStorage.setItem('items', JSON.stringify(items));
+      } else {
+        items = JSON.parse(localStorage.getItem('items'));
+
+        items.push(item);
+
+        localStorage.setItem('items', JSON.stringify(items));
+      }
+    },
+
+    getItemsFromStorage: function() {
+      let items;
+
+      if(localStorage.getItem('items') === null) {
+        items = [];
+      } else {
+        items = JSON.parse(localStorage.getItem('items'))
+      }
+
+      return items;
+    }
+  }
+})();
 
   // ITEM CONTROLLER
 const ItemCtrl = (function(){
@@ -9,25 +44,7 @@ const ItemCtrl = (function(){
 
     // DATA STORAGE/STATE
   const data = {
-    items: [
-      // {
-      //   id: 0,
-      //   name: 'Toast',
-      //   calories: 10
-      // },
-
-      // {
-      //   id: 1,
-      //   name: 'Amala',
-      //   calories: 100
-      // },
-
-      // {
-      //   id: 2,
-      //   name: 'Yam and Egg',
-      //   calories: 1300
-      // }
-    ],
+    items: StorageCtrl.getItemsFromStorage(),
     currentItem: null,
     totalCalories: 0
   }
@@ -293,7 +310,7 @@ const UICtrl = (function(){
 
 
   // APP CONTROLLER
-const App = (function(ItemCtrl, UICtrl){
+const App = (function(ItemCtrl, StorageCtrl, UICtrl){
     // LOAD EVENT LISTENERS
   const loadEventListeners = function() {
       // GET UI SELECTORS
@@ -339,6 +356,9 @@ const App = (function(ItemCtrl, UICtrl){
       const totalCalories = ItemCtrl.getTotalCalories();
 
       UICtrl.showTotalCalories(totalCalories);
+
+        // STORE IN LS
+      StorageCtrl.storeItem(newItem);
 
         // CLEAR INPUTS
       UICtrl.clearInput();
@@ -458,6 +478,6 @@ const App = (function(ItemCtrl, UICtrl){
     }
   }
 
-})(ItemCtrl, UICtrl); // The App Controller
+})(ItemCtrl, StorageCtrl, UICtrl); // The App Controller
 
 App.init();
