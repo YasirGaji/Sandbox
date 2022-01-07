@@ -67,4 +67,22 @@ function deletePost(e) {
   e.preventDefault();
 }
 
+function enableEdit(e) {
+  if(e.target.parentElement.classList.contains('edit')) {
+    const id = e.target.parentElement.dataset.id;
+    const title = e.target.parentElement.previousElementSibling.previousElementSibling.textContent;
+    const body = e.target.parentElement.previousElementSibling.textContent;
+
+    const data = {
+      id,
+      title,
+      body
+    }
+
+    ui.fillForm(data);
+  }
+
+  e.preventDefault();
+}
+
 // https://jsonplaceholder.typicode.com/posts

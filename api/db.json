@@ -9,16 +9,6 @@
       "id": 2,
       "title": "The second post",
       "body": "This is the second post"
-    },
-    {
-      "id": 3,
-      "title": "The third post",
-      "body": "This is the third post"
-    },
-    {
-      "title": "The Fourth Post",
-      "body": "This is post Four",
-      "id": 4
     }
   ]
 }
