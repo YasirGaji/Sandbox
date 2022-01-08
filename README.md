@@ -1,4 +1,4 @@
-# The [Weather app](https://loan-calculatr.netlify.app/).
+# The [Weather app](https://weder-app.netlify.app/).
 
 **Version 1.0.0**
 
