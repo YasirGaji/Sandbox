@@ -1,4 +1,4 @@
-# A Loan Calculator app
+# A [Loan Calculator](https://loan-calculatr.netlify.app/) app.
 
 **Version 1.0.0**
 
