@@ -1,4 +1,4 @@
-# A [Number Guesser]() Game
+# A [Number Guesser](https://guess-digits.netlify.app/) Game
 
 **Version 1.0.0**
 
