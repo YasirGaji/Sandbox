@@ -1,4 +1,4 @@
-# The [Trakalorie app](https://weder-app.netlify.app/).
+# A [Calorie tracker application](https://trakalorie.netlify.app/).
 
 **Version 1.0.0**
 
@@ -8,7 +8,8 @@ This was built to understand the object oriented programming aspect and instanzi
 # Stack
 **Html 5 |**
 **Css |**
-**BootSwatch |**
+**MaterializeCSS |**
+**Unicons |**
 **Javascript**
 
 ---
